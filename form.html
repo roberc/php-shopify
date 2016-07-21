@@ -1,0 +1,69 @@
+<style>
+h2 {
+	text-align:center;
+}
+label {
+	display:block;
+}
+label span {
+	width: 200px;
+	display: inline-block;
+	text-align:right;
+	padding-right: 6px;
+}
+button {
+	margin-left:200px;
+}
+p {
+	text-align: center;
+}
+.success {
+	font-weight:normal;
+	color: #0a0;
+}
+.error {
+	font-weight: bold;
+	color: #a00;
+}
+input[type=file] {
+  width: 500px;
+  height: 200px;
+  background: black;
+}
+img {
+	max-width:100%;
+}
+</style>
+<h2>New Product Creation</h2>
+<form name="sForm" ng-submit="Save()">
+	<div id="theForm">
+		<label><span>Product SKU</span><input type="text" required id="sku"></label>
+		<label><span>Product Vendor</span><input type="text" required id="vendor"></label>
+		<label><span>Product Type</span><input type="text" required id="product_type"></label>
+		<label><span>Product Name</span><input type="text" required id="title"></label>
+		<label><span>Product Description</span><textarea required id="body_html" rows="5" cols="60"></textarea></label>
+		<label><span>Product Price</span><input type="number" step="any" min="0" required id="price"></label>
+		<label><span>Publish it?</span><input type="checkbox" id="published" value="1"></label>
+	</div>
+	<button>Save</button>
+	<div id="pass">
+		<h2>Shopify Credentials</h2>
+		<p>You shoud input Shopify API login, pass and url below.<br>
+			The URL has to contain only your Shopify address in form "shopname.myshopify.com"
+		</p>
+		<label><span>API key</span><input type="text" ng-model="apilog" required></label>
+		<label><span>API pass</span><input type="text" ng-model="apipass" required></label>
+		<label><span>API url</span><input type="text" ng-model="apiurl" required></label>
+		<p>Shopify API URL will be <br><b>https://login:pass@{{ apiurl  }}/admin/products.json</b></p>
+	</div>
+    <div class="dropzone" fileDropzone="[image/png, image/jpeg, image/gif]" file="image" file-name="imageFileName" data-max-file-size="3">
+		<span>Drop Image Here</span>
+    </div>
+    <div class="image-container">
+    	<img ng-src="{{image}}" />
+    	<span class="file-name">{{imageFileName}}</span>
+    </div>
+	<input type="file" fileread="uploadme.src">
+    <img ng-src="{{ uploadme.src }}">
+	<div class="{{ dataScreenClass }}">{{ dataScreen }}</div>
+</form>
